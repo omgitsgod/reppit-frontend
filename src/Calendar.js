@@ -4,6 +4,7 @@ import { Paper, Typography, TextField, Button, List, ListItem, ListItemText, Lis
 import { withStyles } from '@material-ui/core/styles'
 import { Delete, FitnessCenter, PowerSettingsNew } from '@material-ui/icons'
 import DatePicker from 'react-date-picker'
+import SimpleTable from './Table'
 
 
 
@@ -20,8 +21,28 @@ const styles = theme => console.log(theme) || ({
       display: 'flex',
       alignItems: 'baseline',
       justifyContent: 'space-evenly'
+    },
+    main: {
+      width: 'auto',
+      display: 'block', // Fix IE 11 issue.
+      marginLeft: theme.spacing.unit * 3,
+      marginRight: theme.spacing.unit * 3,
+      [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
+        width: 400,
+        marginLeft: 'auto',
+        marginRight: 'auto',
+      },
+    },
+    paper: {
+      marginTop: theme.spacing.unit * 8,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
     }
 })
+
+
 
 export default withStyles(styles) (
 class Calendar extends Component {
@@ -39,17 +60,26 @@ class Calendar extends Component {
     fetch(`http://localhost:3001/api/v1/workouts/${newDate}`, {
   method: 'GET',
   headers: {
-    Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0fQ.oFQeWUjCQx5X2vxlAH_bzAKijAkSbiS2hW9-EQS883o`
+    Authorization: `Bearer ${this.props.user.jwt}`
   }
 }).then(r => r.json()).then(json => this.setState({
       workouts: json
     }))
   }
+  breakIt = () => {
+  const  x = this.state.workouts
+    debugger
+  }
 
   onChange = date => {
     const newDate = `${date.getFullYear()}-${(date.getMonth()+1) > 9 ? (date.getMonth() + 1) : "0" + (date.getMonth() +1) }-${date.getDate() > 9 ? date.getDate() : "0"
     + date.getDate()}`
-    fetch(`http://localhost:3001/api/v1/workouts/${newDate}`).then(r => r.json()).then(json => this.setState({
+    fetch(`http://localhost:3001/api/v1/workouts/${newDate}`, {
+  method: 'GET',
+  headers: {
+    Authorization: `Bearer ${this.props.user.jwt}`
+  }
+}).then(r => r.json()).then(json => this.setState({
       workouts: json,
       date: date
     }))
@@ -64,18 +94,20 @@ class Calendar extends Component {
     const workout = workouts.map(x => { return Object.keys(x.workout).map(y => <Typography variant='display1' align='center' gutterBottom> {y} - {x.workout[y].length} sets </Typography>)})
     return (
 
-      <Paper className={classes.root} >
+      <main className={classes.main}>
+
+      <Paper className={classes.paper}>
 
       <DatePicker a onChange={this.onChange} value={this.state.date} />
-      <Typography variant='display1' align='center' gutterBottom>
+      <Typography onClick={this.breakIt} variant='display1' align='center' gutterBottom>
       Workouts on {(date.getMonth()+1) > 9 ? (date.getMonth() + 1) : "0" + (date.getMonth() +1) }/{date.getDate() > 9 ? date.getDate() : "0"
       + date.getDate()}
       </Typography>
       <Divider />
-      {workout}
 
+      <SimpleTable workouts={workouts}/>
       </Paper>
-
+      </main>
     )
   }
 }

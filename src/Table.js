@@ -15,49 +15,58 @@ const styles = theme => ({
     overflowX: 'auto',
   },
   table: {
-    minWidth: 700,
+    minWidth: 200,
   },
 });
 
 let id = 0;
-function createData(name, calories, fat, carbs, protein) {
+function createData(exercise, sets) {
   id += 1;
-  return { id, name, calories, fat, carbs, protein };
+  return { id, exercise, sets};
 }
 
-const rows = [
-  createData('Bicep/Tricep', 6, 18, 24, 4.0),
-  createData('Chest/Back', 6, 18, 37, 4.3),
-  createData('Shoulders/Traps', 6, 18, 6.0),
-  createData('Legs', 6, 18, 67, 4.3),,
-];
+
+
+
 
 function SimpleTable(props) {
   const { classes } = props;
+
+const workout = props.workouts.map(x => { return Object.keys(x.workout).map(y => [y, x.workout[y].length] )})
+const rowsy = workout.map(x => createData(x[0][0], x[0][1]))
+  props.workouts.map(x => {
+    return Object.keys(x.workout).map(y => createData(y, x.workout[y].length) ) })
+    const rows = [
+      createData('Bicep/Tricep', 6, 18),
+      createData('Chest/Back', 6, 18),
+      createData('Shoulders/Traps', 6, 9),
+      createData('Legs', 6, 18),
+    ]
+    console.log("lookie", rowsy)
+
+
 
   return (
     <Paper className={classes.root}>
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            <TableCell>Workout </TableCell>
-            <TableCell align="right">Exercises</TableCell>
+            <TableCell>Exercise </TableCell>
             <TableCell align="right">Sets</TableCell>
-            <TableCell align="right">Carbs (g)</TableCell>
-            <TableCell align="right">Protein (g)</TableCell>
+
+
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => {
+          {rowsy.map(row => {
             return (
               <TableRow key={row.id}>
                 <TableCell component="th" scope="row">
-                  {row.name}
+                  {row.exercise}
                 </TableCell>
-                <TableCell align="right">{row.calories}</TableCell>
-                <TableCell align="right">{row.fat}</TableCell>
-                <TableCell align="right">{row.carbs}</TableCell>
-                <TableCell align="right">{row.protein}</TableCell>
+                <TableCell align="right">{row.sets}</TableCell>
+
+
               </TableRow>
             );
           })}

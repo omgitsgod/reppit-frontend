@@ -93,7 +93,7 @@ class SignIn extends Component  {
         <form
          className={classes.form}
          onSubmit={this.actionTime}
-         
+         autoComplete="off"
          >
           <FormControl margin="normal" required fullWidth >
             <InputLabel htmlFor="username">Username</InputLabel>

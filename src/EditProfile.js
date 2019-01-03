@@ -40,7 +40,7 @@ export default withStyles(styles) (
 class CreateWorkout extends Component {
   state = {
     exercises: [],
-    exercise: '',
+    name: '',
     weight: '',
     reps: '',
     exerciseList: {}
@@ -53,41 +53,7 @@ class CreateWorkout extends Component {
       [name]: value
     })
 
-  handleThis = (e) => {
-    e.preventDefault()
-    console.log(this.state.exercises)
-    const theList = this.state.exerciseList
-    const exer = this.state.exercise.toLowerCase()
-    const lbs = this.state.weight
-    const reprep = this.state.reps
-    const newList = {...theList}
 
-    console.log("LOOK HERE", newList)
-    if (!newList[exer]) {
-      newList[exer] = []
-    }
-    newList[exer].push({weight: lbs, reps: reprep})
-    console.log(newList)
-    this.setState({
-      exerciseList: newList
-    })
-    if (this.state.exercise && this.state.weight && this.state.reps) {
-      this.setState(({ exercises, exercise, weight, reps}) => ({
-        exercises: [
-          ...exercises,
-          {
-            exercise,
-            weight,
-            reps,
-            id: Date.now()
-          }
-        ],
-
-
-      }))
-    }
-    console.log(this.state.exerciseList)
-  }
   handleDelete = (id) => {
     this.setState(({ exercises }) => ({
       exercises: exercises.filter(ex => ex.id !== id)
@@ -96,9 +62,9 @@ class CreateWorkout extends Component {
 
   handleNext = (e) => {
     e.preventDefault()
-    this.setState(({ exercises, exercise, weight, reps }) => ({
+    this.setState(({ exercises, name, weight, reps }) => ({
 
-        exercise: '',
+        name: '',
         weight: '',
         reps:''
       }))
@@ -110,7 +76,7 @@ class CreateWorkout extends Component {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${this.props.user.jwt}`
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0fQ.oFQeWUjCQx5X2vxlAH_bzAKijAkSbiS2hW9-EQS883o`
 
         },
 
@@ -119,7 +85,7 @@ class CreateWorkout extends Component {
 
     this.setState(({ exercises, exercise, weight, reps }) => ({
         exercises: [],
-        exercise: '',
+        name: '',
         weight: '',
         reps:'',
         exerciseList: {}
@@ -128,7 +94,7 @@ class CreateWorkout extends Component {
 
 
   render() {
-    const { exercise, exercises, weight, reps } = this.state
+    const { name, exercises, weight, reps } = this.state
     const { classes } = this.props
 
     return (
@@ -136,14 +102,15 @@ class CreateWorkout extends Component {
 
       <Paper className={classes.paper}>
       <Typography variant='display1' align='center' gutterBottom>
-        Session
+
+        Edit Profile
       </Typography>
       <Divider />
       <form onSubmit={this.handleNext} autoComplete="off">
         <TextField
-          name='exercise'
-          label='Exercise'
-          value={exercise}
+          name='name'
+          label='Name'
+          value={name}
           onChange={this.handleChange}
           margin='normal'
           fullWidth='true'
@@ -169,7 +136,7 @@ class CreateWorkout extends Component {
         <Button
           color="primary"
           variant="raised"
-          onClick={this.handleThis}
+          onClick={console.log}
         >
           Add To Workout
         </Button>
@@ -181,50 +148,7 @@ class CreateWorkout extends Component {
           Next Exercise
         </Button>
       </form>
-      <List>
-      <ListItem>
-        <ListItemText primary="Exercise"/>
-        <ListItemText primary="Weight"/>
-        <ListItemText primary="Reps"/>
-      </ListItem>
-        {exercises.map(({ id, exercise, weight, reps }) =>
-          <ListItem key={id}>
-            <ListItemText primary={exercise} />
-            <ListItemText primary={weight} />
-            <ListItemText primary={reps} />
-            <ListItemSecondaryAction>
-              <IconButton
-                color='primary'
-                onClick={() => this.handleDelete(id)}
-              >
-                <Delete />
-              </IconButton>
-            </ListItemSecondaryAction>
-          </ListItem>
 
-      )}
-      </List>
-      {this.state.exercises.length ?
-        <div>
-      <Button
-        type="submit"
-        color="primary"
-        variant="raised"
-        onClick={this.createWorkout}
-      >
-        Save Workout
-      </Button>
-      <Button
-        type="submit"
-        color="primary"
-        variant="raised"
-        onClick={this.createWorkout}
-      >
-        Save To Routines
-      </Button>
-      </div>
-      : ''
-    }
       </Paper>
       </main>
     )

@@ -223,9 +223,9 @@ class MenuAppBar extends React.Component {
                   onClose={this.handleClose}
                 >
                   <MenuItem onClick={this.handleClose}><Link to='/profile' style={{ textDecoration: 'none', color: 'white' }}>Profile </Link></MenuItem>
-                  <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                  <MenuItem onClick={this.handleClose}><Link to='/editprofile' style={{ textDecoration: 'none', color: 'white' }}>Edit Profile</Link></MenuItem>
                   <MenuItem onClick={() => this.props.handleUser({})}>Logout</MenuItem>
-                
+
                 </Menu>
               </div>
             ) : (

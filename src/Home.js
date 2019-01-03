@@ -18,6 +18,24 @@ const styles = theme => console.log(theme) || ({
       display: 'flex',
       alignItems: 'baseline',
       justifyContent: 'space-evenly'
+    },
+    main: {
+      width: 'auto',
+      display: 'block', // Fix IE 11 issue.
+      marginLeft: theme.spacing.unit * 3,
+      marginRight: theme.spacing.unit * 3,
+      [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
+        width: 400,
+        marginLeft: 'auto',
+        marginRight: 'auto',
+      },
+    },
+    paper: {
+      marginTop: theme.spacing.unit * 8,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
     }
 })
 
@@ -27,25 +45,38 @@ class Home extends Component {
     const { classes } = this.props
     const date = new Date
     return (
-
-      <Paper className={classes.root}>
+      <main className={classes.main}>
+      <Paper className={classes.paper}>
       <Typography variant='display2' align='center' gutterBottom>
       Today is {(date.getMonth()+1) > 9 ? (date.getMonth() + 1) : "0" + (date.getMonth() +1) }/{date.getDate() > 9 ? date.getDate() : "0"
       + date.getDate()}
       </Typography>
+      <Typography variant='display2' align='center' gutterBottom>
+      Welcome back, {this.props.user.user.name ? this.props.user.user.name : this.props.user.user.username}
+      </Typography>
       <Divider />
-      <Typography variant='display1' align='center' gutterBottom>
-    <Link to='/createworkout'>  Start Your Workout </Link>
-      </Typography>
-      <Typography variant='display1' align='center' gutterBottom>
-      <Link to="/workouts"> View Your Workouts </Link>
-      </Typography>
-      <Typography variant='display1' align='center' gutterBottom>
-      <Link to="/profile"> Profile </Link>
-      </Typography>
-    
-      </Paper>
+      <br />
+      <Button
+      color="primary"
+      variant="raised">
+    <Link to='/createworkout' style={{ textDecoration: 'none', color: 'white' }}>  Start Workout </Link>
+      </Button >
+      <br />
+      <Button
+      color="primary"
+      variant="raised">
+      <Link to="/calendar" style={{ textDecoration: 'none', color: 'white' }}> View Workouts </Link>
+      </Button>
+      <br />
+      <Button
+      color="primary"
+      variant="raised"
+      onClick={this.props.handleUser}>
+      <Link to="/profile" style={{ textDecoration: 'none', color: 'white' }}> Logout </Link>
+      </Button>
 
+      </Paper>
+      </main>
     )
   }
 }
