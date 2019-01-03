@@ -22,7 +22,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-import {FitnessCenter, PowerSettingsNew } from '@material-ui/icons'
+import {FitnessCenter, PowerSettingsNew, CenterFocusStrong, History, RssFeed, Favorite, Album, LocationOn, Settings, Home } from '@material-ui/icons'
 import { Link } from 'react-router-dom'
 
 const styles = {
@@ -76,30 +76,106 @@ class MenuAppBar extends React.Component {
 
     const sideList = (
       <div className={classes.list}>
-      <IconButton className={classes.menuButton} onClick={this.toggleDrawer('left', true)} color="inherit" aria-label="Menu">
+
+
+      <ListItem button>
+
+      <ListItemIcon className={classes.menuButton} onClick={this.toggleDrawer('left', true)} aria-label="Menu">
         <MenuIcon />
-      </IconButton>
+      </ListItemIcon>
+      <ListItemText primary="Reppit" />
+      </ListItem>
+        <Divider />
+        <Divider />
         <List>
-          {['Start Working Out', 'Create A Workout', 'View Workouts', 'View Exercises'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+
+        <Link to='/' style={{ textDecoration: 'none', color: 'white' }}>
+        <ListItem button>
+
+        <ListItemIcon>
+          <Home />
+        </ListItemIcon>
+        <ListItemText primary="Home" />
+        </ListItem></Link>
+
+        <Link to='/createworkout' style={{ textDecoration: 'none', color: 'white' }}>
+        <ListItem button>
+
+        <ListItemIcon>
+          <FitnessCenter />
+        </ListItemIcon>
+        <ListItemText primary="Work Out" />
+        </ListItem></Link>
+
+        <Link to='/workouts' style={{ textDecoration: 'none', color: 'white' }}>
+        <ListItem button>
+
+        <ListItemIcon>
+          <CenterFocusStrong />
+        </ListItemIcon>
+        <ListItemText primary="Saved Routines" />
+        </ListItem></Link>
+
+
+        <Link to='/calendar' style={{ textDecoration: 'none', color: 'white' }}>
+        <ListItem button>
+
+        <ListItemIcon>
+          <History />
+        </ListItemIcon>
+        <ListItemText primary="Past Workouts" />
+        </ListItem></Link>
+
+
         </List>
         <Divider />
         <List>
-        <ListItem><ListItemText primary="Start Working Out" /></ListItem>
+        <Link to='/createworkout' style={{ textDecoration: 'none', color: 'white' }}>
+        <ListItem button>
+
+        <ListItemIcon>
+          <RssFeed />
+        </ListItemIcon>
+        <ListItemText primary="Feed" />
+        </ListItem></Link>
         </List>
-        <Divider />
+        <Link to='/createworkout' style={{ textDecoration: 'none', color: 'white' }}>
+        <ListItem button>
+
+        <ListItemIcon>
+          <Favorite />
+        </ListItemIcon>
+        <ListItemText primary="Friends" />
+        </ListItem></Link>
         <List>
-          {['Feed','Friends', 'Challenges', 'Gyms'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
+
+        <Link to='/createworkout' style={{ textDecoration: 'none', color: 'white' }}>
+        <ListItem button>
+
+        <ListItemIcon>
+          <Album />
+        </ListItemIcon>
+        <ListItemText primary="Challenges" />
+        </ListItem></Link>
+
+        <Link to='/createworkout' style={{ textDecoration: 'none', color: 'white' }}>
+        <ListItem button>
+
+        <ListItemIcon>
+          <LocationOn />
+        </ListItemIcon>
+        <ListItemText primary="Gyms" />
+        </ListItem></Link>
+
+        <Link to='/createworkout' style={{ textDecoration: 'none', color: 'white' }}>
+        <ListItem button>
+
+        <ListItemIcon>
+          <Settings />
+        </ListItemIcon>
+        <ListItemText primary="Settings" />
+        </ListItem></Link>
+          </List>
       </div>
     );
 
@@ -113,10 +189,10 @@ class MenuAppBar extends React.Component {
             <IconButton className={classes.menuButton} onClick={this.toggleDrawer('left', true)}  color="inherit" aria-label="Menu">
               <FitnessCenter />
             </IconButton>
-        
+
             <Typography variant="h6" color="inherit" className={classes.grow}>
 
-              Reppit
+            <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>  Reppit </Link>
             </Typography>
 
             {auth ? (
@@ -146,16 +222,10 @@ class MenuAppBar extends React.Component {
                   open={open}
                   onClose={this.handleClose}
                 >
-                  <MenuItem onClick={this.toggleDrawer}>Profile</MenuItem>
+                  <MenuItem onClick={this.handleClose}><Link to='/profile' style={{ textDecoration: 'none', color: 'white' }}>Profile </Link></MenuItem>
                   <MenuItem onClick={this.handleClose}>My account</MenuItem>
-                  <MenuItem ><FormGroup>
-                    <FormControlLabel
-                      control={
-                        <Switch checked={auth} onChange={this.handleChange} aria-label="LoginSwitch" />
-                      }
-                      label={auth ? 'Logout' : 'Login'}
-                    />
-                  </FormGroup></MenuItem>
+                  <MenuItem onClick={() => this.props.handleUser({})}>Logout</MenuItem>
+                
                 </Menu>
               </div>
             ) : (

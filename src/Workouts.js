@@ -3,6 +3,7 @@ import { Paper, Typography, TextField, Button, List, ListItem, ListItemText, Lis
   IconButton, Grid, Divider } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import { Delete, FitnessCenter, PowerSettingsNew } from '@material-ui/icons'
+import SimpleTable from './Table'
 
 
 const styles = theme => console.log(theme) || ({
@@ -29,8 +30,10 @@ class Workouts extends Component {
       <Paper className={classes.root}>
       <Typography variant='display1' align='center' gutterBottom>
       Saved Workouts
-      <Divider />
+        
       </Typography>
+        <Divider />
+      <SimpleTable />
       </Paper>
 
     )

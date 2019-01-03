@@ -92,10 +92,11 @@ class CreateWorkout extends Component {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0fQ.oFQeWUjCQx5X2vxlAH_bzAKijAkSbiS2hW9-EQS883o`
 
         },
 
-        body: JSON.stringify({workout: this.state.exerciseList, user_id: 1}),
+        body: JSON.stringify({workout: this.state.exerciseList, user_id: 2}),
     })
 
     this.setState(({ exercises, exercise, weight, reps }) => ({
@@ -196,6 +197,7 @@ class CreateWorkout extends Component {
       )}
       </List>
       {this.state.exercises.length ?
+        <div>
       <Button
         type="submit"
         color="primary"
@@ -204,6 +206,15 @@ class CreateWorkout extends Component {
       >
         Save Workout
       </Button>
+      <Button
+        type="submit"
+        color="primary"
+        variant="raised"
+        onClick={this.createWorkout}
+      >
+        Save To Routines
+      </Button>
+      </div>
       : ''
     }
       </Paper>

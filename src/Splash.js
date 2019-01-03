@@ -22,28 +22,35 @@ const styles = theme => console.log(theme) || ({
 })
 
 export default withStyles(styles) (
-class Home extends Component {
+class Splash extends Component {
   render() {
     const { classes } = this.props
     const date = new Date
     return (
 
       <Paper className={classes.root}>
-      <Typography variant='display2' align='center' gutterBottom>
-      Today is {(date.getMonth()+1) > 9 ? (date.getMonth() + 1) : "0" + (date.getMonth() +1) }/{date.getDate() > 9 ? date.getDate() : "0"
-      + date.getDate()}
-      </Typography>
-      <Divider />
-      <Typography variant='display1' align='center' gutterBottom>
-    <Link to='/createworkout'>  Start Your Workout </Link>
-      </Typography>
-      <Typography variant='display1' align='center' gutterBottom>
-      <Link to="/workouts"> View Your Workouts </Link>
-      </Typography>
-      <Typography variant='display1' align='center' gutterBottom>
-      <Link to="/profile"> Profile </Link>
-      </Typography>
     
+      <Divider />
+      <Typography variant='display2' align='center' gutterBottom>
+      Reppit
+      </Typography>
+
+      <Paper>
+      <Link to="/signup" style={{ textDecoration: 'none', color: 'white' }}>
+      <Button
+        color="primary"
+        variant="raised">
+        Sign Up
+        </Button>
+        </Link>
+        <Link to="/signin" style={{ textDecoration: 'none', color: 'white' }}>
+        <Button
+          color="primary"
+          variant="raised">
+          Sign In
+          </Button>
+          </Link>
+          </Paper>
       </Paper>
 
     )

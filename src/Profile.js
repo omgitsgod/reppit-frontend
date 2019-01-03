@@ -27,9 +27,9 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    fetch(`http://localhost:3001/api/v1/users`).then(r => r.json()).then(json => this.setState({
-      user: json[0]
-    }))
+    this.setState({
+      user: this.props.user.user
+    })
 
   }
   render() {

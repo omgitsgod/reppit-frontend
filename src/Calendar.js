@@ -36,7 +36,12 @@ class Calendar extends Component {
     console.log(date)
     const newDate = `${date.getFullYear()}-${(date.getMonth()+1) > 9 ? (date.getMonth() + 1) : "0" + (date.getMonth() +1) }-${date.getDate() > 9 ? date.getDate() : "0"
     + date.getDate()}`
-    fetch(`http://localhost:3001/api/v1/workouts/${newDate}`).then(r => r.json()).then(json => this.setState({
+    fetch(`http://localhost:3001/api/v1/workouts/${newDate}`, {
+  method: 'GET',
+  headers: {
+    Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0fQ.oFQeWUjCQx5X2vxlAH_bzAKijAkSbiS2hW9-EQS883o`
+  }
+}).then(r => r.json()).then(json => this.setState({
       workouts: json
     }))
   }
