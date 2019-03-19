@@ -128,7 +128,7 @@ class MenuAppBar extends React.Component {
         <Divider />
         <List>
         <Link to='/createworkout' style={{ textDecoration: 'none', color: 'white' }}>
-        <ListItem button>
+        <ListItem button disabled={true}>
 
         <ListItemIcon>
           <RssFeed />
@@ -137,7 +137,7 @@ class MenuAppBar extends React.Component {
         </ListItem></Link>
         </List>
         <Link to='/createworkout' style={{ textDecoration: 'none', color: 'white' }}>
-        <ListItem button>
+        <ListItem button disabled={true}>
 
         <ListItemIcon>
           <Favorite />
@@ -147,7 +147,7 @@ class MenuAppBar extends React.Component {
         <List>
 
         <Link to='/createworkout' style={{ textDecoration: 'none', color: 'white' }}>
-        <ListItem button>
+        <ListItem button disabled={true}>
 
         <ListItemIcon>
           <Album />
@@ -156,7 +156,7 @@ class MenuAppBar extends React.Component {
         </ListItem></Link>
 
         <Link to='/createworkout' style={{ textDecoration: 'none', color: 'white' }}>
-        <ListItem button>
+        <ListItem button disabled={true}>
 
         <ListItemIcon>
           <LocationOn />
@@ -165,7 +165,7 @@ class MenuAppBar extends React.Component {
         </ListItem></Link>
 
         <Link to='/createworkout' style={{ textDecoration: 'none', color: 'white' }}>
-        <ListItem button>
+        <ListItem button disabled={true}>
 
         <ListItemIcon>
           <Settings />
