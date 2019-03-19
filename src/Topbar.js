@@ -194,9 +194,9 @@ class MenuAppBar extends React.Component {
 
             {auth ? (
               <div>
-
+                <IconButton >
                 <MailIcon />
-
+                </IconButton>
                 <IconButton
                   aria-owns={open ? 'menu-appbar' : undefined}
                   aria-haspopup="true"

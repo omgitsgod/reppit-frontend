@@ -39,6 +39,9 @@ const styles = theme => console.log(theme) || ({
 
 export default withStyles(styles) (
 class Workouts extends Component {
+  state = {
+    workouts: []
+  }
   render() {
     const { classes } = this.props
     return (
@@ -51,7 +54,7 @@ class Workouts extends Component {
 
       </Typography>
         <Divider />
-      <SimpleTable />
+      {this.state.workouts.length > 0? <SimpleTable /> : <Divider />}
       </Paper>
       </main>
     )
