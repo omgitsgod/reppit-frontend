@@ -68,7 +68,6 @@ export default class Yes extends Component {
         logged: false
       })
     }
-    console.log("yooo", user)
   }
 
   render(){

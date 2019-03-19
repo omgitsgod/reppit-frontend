@@ -99,7 +99,7 @@ class Calendar extends Component {
       </Typography>
       <Divider />
 
-      <SimpleTable workouts={workouts}/>
+      {workouts.length > 0 ? <SimpleTable workouts={workouts}/> : <Divider /> }
       </Paper>
       </main>
     )
