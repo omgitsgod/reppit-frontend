@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import { Paper, Typography, TextField, Button, List, ListItem, ListItemText, ListItemSecondaryAction,
-  IconButton, Grid, Divider } from '@material-ui/core'
+import { Paper, Typography, Button, Divider } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
-import { Delete, FitnessCenter, PowerSettingsNew } from '@material-ui/icons'
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
+import { Link} from 'react-router-dom'
 
 
 const styles = theme => console.log(theme) || ({
@@ -43,7 +41,7 @@ export default withStyles(styles) (
 class Home extends Component {
   render() {
     const { classes } = this.props
-    const date = new Date
+    const date = new Date()
     return (
       <main className={classes.main}>
       <Paper className={classes.paper}>
@@ -72,7 +70,7 @@ class Home extends Component {
       color="primary"
       variant="raised"
       onClick={this.props.handleUser}>
-      <Link to="/profile" style={{ textDecoration: 'none', color: 'white' }}> Logout </Link>
+       Logout
       </Button>
 
       </Paper>

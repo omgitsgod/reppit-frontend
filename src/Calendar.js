@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import { Paper, Typography, TextField, Button, List, ListItem, ListItemText, ListItemSecondaryAction,
-  IconButton, Grid, Divider } from '@material-ui/core'
+import { Paper, Typography, Divider } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
-import { Delete, FitnessCenter, PowerSettingsNew } from '@material-ui/icons'
 import DatePicker from 'react-date-picker'
 import SimpleTable from './Table'
 
@@ -57,7 +55,7 @@ class Calendar extends Component {
     console.log(date)
     const newDate = `${date.getFullYear()}-${(date.getMonth()+1) > 9 ? (date.getMonth() + 1) : "0" + (date.getMonth() +1) }-${date.getDate() > 9 ? date.getDate() : "0"
     + date.getDate()}`
-    fetch(`http://localhost:3001/api/v1/workouts/${newDate}`, {
+    fetch(`https://reppit-backend.herokuapp.com/api/v1/workouts/${newDate}`, {
   method: 'GET',
   headers: {
     Authorization: `Bearer ${this.props.user.jwt}`
@@ -67,14 +65,13 @@ class Calendar extends Component {
     }))
   }
   breakIt = () => {
-  const  x = this.state.workouts
-    debugger
+
   }
 
   onChange = date => {
     const newDate = `${date.getFullYear()}-${(date.getMonth()+1) > 9 ? (date.getMonth() + 1) : "0" + (date.getMonth() +1) }-${date.getDate() > 9 ? date.getDate() : "0"
     + date.getDate()}`
-    fetch(`http://localhost:3001/api/v1/workouts/${newDate}`, {
+    fetch(`https://reppit-backend.herokuapp.com/api/v1/workouts/${newDate}`, {
   method: 'GET',
   headers: {
     Authorization: `Bearer ${this.props.user.jwt}`
@@ -88,10 +85,7 @@ class Calendar extends Component {
   render() {
     const { classes } = this.props
     const { date, workouts } = this.state
-    const newDate = `${date.getFullYear()}-${(date.getMonth()+1) > 9 ? (date.getMonth() + 1) : "0" + (date.getMonth() +1) }-${date.getDate() > 9 ? date.getDate() : "0"
-    + date.getDate()} EST`
-    console.log("YO", this.state.workouts)
-    const workout = workouts.map(x => { return Object.keys(x.workout).map(y => <Typography variant='display1' align='center' gutterBottom> {y} - {x.workout[y].length} sets </Typography>)})
+
     return (
 
       <main className={classes.main}>

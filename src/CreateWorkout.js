@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Paper, Typography, TextField, Button, List, ListItem, ListItemText, ListItemSecondaryAction,
   IconButton, Divider } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
-import { Delete, FitnessCenter, PowerSettingsNew } from '@material-ui/icons'
+import { Delete} from '@material-ui/icons'
 
 
 const styles = theme => console.log(theme) || ({
@@ -106,7 +106,7 @@ class CreateWorkout extends Component {
   }
 
   createWorkout = () => {
-    fetch('http://localhost:3001/api/v1/workouts', {
+    fetch('https://reppit-backend.herokuapp.com/api/v1/workouts', {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

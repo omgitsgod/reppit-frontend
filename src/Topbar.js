@@ -12,15 +12,12 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import Badge from '@material-ui/core/Badge'
-import Button from '@material-ui/core/Button';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import {FitnessCenter, PowerSettingsNew, CenterFocusStrong, History, RssFeed, Favorite, Album, LocationOn, Settings, Home } from '@material-ui/icons'
 import { Link } from 'react-router-dom'
@@ -197,9 +194,9 @@ class MenuAppBar extends React.Component {
 
             {auth ? (
               <div>
-              <Badge className={classes.margin} badgeContent={25} color="primary">
+
                 <MailIcon />
-              </Badge>
+
                 <IconButton
                   aria-owns={open ? 'menu-appbar' : undefined}
                   aria-haspopup="true"
@@ -223,7 +220,7 @@ class MenuAppBar extends React.Component {
                   onClose={this.handleClose}
                 >
                   <MenuItem onClick={this.handleClose}><Link to='/profile' style={{ textDecoration: 'none', color: 'white' }}>Profile </Link></MenuItem>
-                  <MenuItem onClick={this.handleClose}><Link to='/editprofile' style={{ textDecoration: 'none', color: 'white' }}>Edit Profile</Link></MenuItem>
+                  <MenuItem onClick={this.handleClose}>Edit Profile</MenuItem>
                   <MenuItem onClick={() => this.props.handleUser({})}>Logout</MenuItem>
 
                 </Menu>

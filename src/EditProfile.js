@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import { Paper, Typography, TextField, Button, List, ListItem, ListItemText, ListItemSecondaryAction,
-  IconButton, Divider } from '@material-ui/core'
+import { Paper, Typography, TextField, Button, Divider } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
-import { Delete, FitnessCenter, PowerSettingsNew } from '@material-ui/icons'
 
 
 const styles = theme => console.log(theme) || ({
@@ -94,7 +92,7 @@ class CreateWorkout extends Component {
 
 
   render() {
-    const { name, exercises, weight, reps } = this.state
+    const { name,  weight} = this.state
     const { classes } = this.props
 
     return (

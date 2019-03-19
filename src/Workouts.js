@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import { Paper, Typography, TextField, Button, List, ListItem, ListItemText, ListItemSecondaryAction,
-  IconButton, Grid, Divider } from '@material-ui/core'
+import { Paper, Typography, Divider } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
-import { Delete, FitnessCenter, PowerSettingsNew } from '@material-ui/icons'
 import SimpleTable from './Table'
 
 

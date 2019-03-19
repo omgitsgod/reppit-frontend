@@ -1,12 +1,8 @@
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
 import Home from './Home'
-import Button from '@material-ui/core/Button';
-import Drawer from '@material-ui/core/Drawer';
 import MenuAppBar from './Topbar'
 import CreateWorkout from './CreateWorkout'
-import Grid from '@material-ui/core/Grid';
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
+import { Route} from 'react-router-dom'
 import Profile from './Profile'
 import Calendar from './Calendar'
 import Workouts from './Workouts'
@@ -99,8 +95,8 @@ user: {
         <Route path="/createworkout" render={(props)=><CreateWorkout {...props} user={this.state.user}/>}/>
         <Route path="/profile" render={(props)=><Profile {...props} user={this.state.user}/>}/>
         <Route path="/calendar" render={(props)=><Calendar {...props} user={x}/>}/>
-        <Route path="/signin" render={(props)=><Home {...props} user={this.state.user}/>}/>
-        <Route path="/signup" render={(props)=><Home {...props} user={this.state.user}/>}/>
+        <Route path="/signin" render={(props)=><Home {...props} user={this.state.user} handleUser={this.handleUser}/>}/>
+        <Route path="/signup" render={(props)=><Home {...props} user={this.state.user} handleUser={this.handleUser}/>}/>
         <Route path="/editprofile" render={(props)=><EditProfile {...props} user={this.state.user}/>}/>
         </div> :
         <div>
