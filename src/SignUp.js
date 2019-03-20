@@ -63,7 +63,7 @@ class SignUp extends Component  {
       password: e.target.password.value
     }
 
-    fetch('https://reppit-backend.herokuapp.com/api/v1/users', {
+    fetch(`${process.env.REACT_APP_HOST}/api/v1/users`, {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',

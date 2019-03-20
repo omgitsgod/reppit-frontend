@@ -93,7 +93,7 @@ user: {
         <Route path="/workouts" component={Workouts} />
         <Route path="/createworkout" render={(props)=><CreateWorkout {...props} user={this.state.user}/>}/>
         <Route path="/profile" render={(props)=><Profile {...props} user={this.state.user}/>}/>
-        <Route path="/calendar" render={(props)=><Calendar {...props} user={x}/>}/>
+        <Route path="/calendar" render={(props)=><Calendar {...props} user={this.state.user}/>}/>
         <Route path="/signin" render={(props)=><Home {...props} user={this.state.user} handleUser={this.handleUser}/>}/>
         <Route path="/signup" render={(props)=><Home {...props} user={this.state.user} handleUser={this.handleUser}/>}/>
         <Route path="/editprofile" render={(props)=><EditProfile {...props} user={this.state.user}/>}/>

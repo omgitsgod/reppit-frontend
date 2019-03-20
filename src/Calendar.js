@@ -53,12 +53,13 @@ class Calendar extends Component {
   componentDidMount() {
     const date = this.state.date
     console.log(date)
+    console.log(this.props.user.jwt)
     const newDate = `${date.getFullYear()}-${(date.getMonth()+1) > 9 ? (date.getMonth() + 1) : "0" + (date.getMonth() +1) }-${date.getDate() > 9 ? date.getDate() : "0"
     + date.getDate()}`
-    fetch(`https://reppit-backend.herokuapp.com/api/v1/workouts/${newDate}`, {
+    fetch(`${process.env.REACT_APP_HOST}/api/v1/workouts/${newDate}`, {
   method: 'GET',
   headers: {
-    Authorization: `Bearer ${this.props.user.jwt}`
+    Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0fQ.F2sWXiqaFY9vfammG7Ek6r2bJZ4INyoTPgFRQGNd0vI`
   }
 }).then(r => r.json()).then(json => this.setState({
       workouts: json
@@ -71,10 +72,10 @@ class Calendar extends Component {
   onChange = date => {
     const newDate = `${date.getFullYear()}-${(date.getMonth()+1) > 9 ? (date.getMonth() + 1) : "0" + (date.getMonth() +1) }-${date.getDate() > 9 ? date.getDate() : "0"
     + date.getDate()}`
-    fetch(`https://reppit-backend.herokuapp.com/api/v1/workouts/${newDate}`, {
+    fetch(`${process.env.REACT_APP_HOST}/api/v1/workouts/${newDate}`, {
   method: 'GET',
   headers: {
-    Authorization: `Bearer ${this.props.user.jwt}`
+    Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0fQ.F2sWXiqaFY9vfammG7Ek6r2bJZ4INyoTPgFRQGNd0vI`
   }
 }).then(r => r.json()).then(json => this.setState({
       workouts: json,

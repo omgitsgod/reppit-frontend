@@ -106,7 +106,7 @@ class CreateWorkout extends Component {
   }
 
   createWorkout = () => {
-    fetch('https://reppit-backend.herokuapp.com/api/v1/workouts', {
+    fetch(`${process.env.REACT_APP_HOST}/api/v1/workouts`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
