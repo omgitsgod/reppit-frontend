@@ -42,7 +42,7 @@ const rowsy = workout.map(x => createData(x[0][0], x[0][1]))
       createData('Shoulders/Traps', 6, 9),
       createData('Legs', 6, 18),
     ]
-    console.log("lookie", rowsy)
+    console.log("lookie", props.workouts)
 
 
 

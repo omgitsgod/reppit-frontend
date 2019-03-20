@@ -53,16 +53,16 @@ class Calendar extends Component {
   componentDidMount() {
     const date = this.state.date
     console.log(date)
-    console.log(this.props.user.jwt)
+    console.log(this.props.user.user.id)
     const newDate = `${date.getFullYear()}-${(date.getMonth()+1) > 9 ? (date.getMonth() + 1) : "0" + (date.getMonth() +1) }-${date.getDate() > 9 ? date.getDate() : "0"
     + date.getDate()}`
     fetch(`${process.env.REACT_APP_HOST}/api/v1/workouts/${newDate}`, {
   method: 'GET',
   headers: {
-    Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0fQ.F2sWXiqaFY9vfammG7Ek6r2bJZ4INyoTPgFRQGNd0vI`
+    Authorization: `Bearer ${this.props.user.jwt}`
   }
 }).then(r => r.json()).then(json => this.setState({
-      workouts: json
+      workouts: json.filter(x => x.user_id === this.props.user.user.id)
     }))
   }
   breakIt = () => {
@@ -75,7 +75,7 @@ class Calendar extends Component {
     fetch(`${process.env.REACT_APP_HOST}/api/v1/workouts/${newDate}`, {
   method: 'GET',
   headers: {
-    Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0fQ.F2sWXiqaFY9vfammG7Ek6r2bJZ4INyoTPgFRQGNd0vI`
+    Authorization: `Bearer ${this.props.user.jwt}`
   }
 }).then(r => r.json()).then(json => this.setState({
       workouts: json,
