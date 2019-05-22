@@ -5,6 +5,7 @@
 * [Setup](#setup)
 ## General Info
 Simple app to help in tracking workouts
+![Screenshot](./Screenshot.png)
 
 ## Technologies
 Project is created with:
