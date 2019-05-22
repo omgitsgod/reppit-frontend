@@ -4,7 +4,7 @@
 * [Technologies](#technologies)
 * [Setup](#setup)
 ## General Info
-Simple app to to track workouts
+Simple app to help in tracking workouts
 
 ## Technologies
 Project is created with:
